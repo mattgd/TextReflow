@@ -48,4 +48,22 @@ def reflow(text, chars):
 
     return brokenText
 
-print(reflow(getText(), 40))
+# Find the longest word in the text
+text = getText()
+longestWord = 1
+while len(text) > 1:
+    word = text[0:text.index(' ')]
+    if longestWord < len(word):
+        longestWord = len(word)
+    text = text[text.index(' ') + 1:]
+
+# Get user input for maximum line length
+chars = int(input('Enter the maximum number of characters per line: '))
+
+# Enforce longest word as minimum line length
+while chars < longestWord:
+    print('Maximum number of characters per line must be at least equal to the length of the longest word.')
+    chars = int(input('Enter the maximum number of characters per line: '))
+
+# Display the reformatted text
+print(reflow(getText(), chars))
